@@ -1,5 +1,6 @@
+import os
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from .. import crud, schemas, models
@@ -59,3 +60,30 @@ def delete_expense(
     if not expense:
         raise HTTPException(status_code=404, detail="Expense not found")
     crud.delete_expense(db, expense)
+
+
+@router.get("/export/transactions")
+def export_transactions(
+    api_key: str = Query(...),
+    db: Session = Depends(get_db),
+):
+    expected = os.getenv("EXPORT_API_KEY")
+    if not expected or api_key != expected:
+        raise HTTPException(status_code=403, detail="Invalid API key")
+
+    expenses = db.query(models.Expense).all()
+    return [
+        {
+            "id": e.expense_id,
+            "user_id": e.user_id,
+            "type": e.type,
+            "amount": float(e.amount),
+            "currency": e.currency,
+            "category": e.category.name,
+            "payment_method": e.payment_method.name,
+            "date": str(e.transaction_date),
+            "description": e.description or "",
+            "created_at": str(e.created_at),
+        }
+        for e in expenses
+    ]
