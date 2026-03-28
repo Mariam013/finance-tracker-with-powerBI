@@ -136,6 +136,7 @@ npm run dev
 The backend exposes a flat JSON export endpoint that feeds live transaction data directly into Power BI Desktop.
 
 ### Dashboard Visuals
+<img width="1171" height="658" alt="image" src="https://github.com/user-attachments/assets/f6024873-0995-477d-bbd4-7ef20a9152f5" />
 
 | Visual | Description |
 |---|---|
