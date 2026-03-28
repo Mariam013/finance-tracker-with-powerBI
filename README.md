@@ -131,15 +131,30 @@ npm run dev
 
 ---
 
-## Power BI Integration
+## Power BI Dashboard
 
-The backend exposes a flat JSON export endpoint for Power BI:
+The backend exposes a flat JSON export endpoint that feeds live transaction data directly into Power BI Desktop.
+
+### Dashboard Visuals
+
+| Visual | Description |
+|---|---|
+| KPI Cards | Total Expenses, Total Income, and Net balance at a glance |
+| Expense by Payment Type | Donut chart breaking down spending by Cash, Card, Bank Transfer, Mobile Money |
+| Expenses by Category | Pie chart showing spending distribution across categories |
+| Expenses Table | Detailed breakdown by category, amount, year, month, and description |
+| Income vs Expenditure | Bar chart comparing income and expenses month over month |
+| Savings by Month | Line chart tracking net savings trend over time |
+| Income Sources | Bar chart showing income breakdown by source (Salary, Gift, Other Income) |
+| Filter by Currency | Slicer to filter all visuals by GHS, RWF, or USD |
+| Filter by Month/Year | Slicer to drill into specific time periods |
+
+### Connecting Power BI
 
 ```
 GET /export/transactions?api_key=YOUR_API_KEY
 ```
 
-In Power BI Desktop:
 1. **Get Data** → **Web** → **Advanced**
 2. URL: `https://grateful-hope-production-9698.up.railway.app/export/transactions`
 3. Add URL parameter: `api_key` = your export API key
