@@ -139,7 +139,7 @@ The backend exposes a flat JSON export endpoint that feeds live transaction data
 
 | Visual | Description |
 |---|---|
-| KPI Cards | Total Expenses, Total Income, and Net balance at a glance |
+| KPI Cards | Total Expenses, Total Income, and Net balance at a glance all converted to USD|
 | Expense by Payment Type | Donut chart breaking down spending by Cash, Card, Bank Transfer, Mobile Money |
 | Expenses by Category | Pie chart showing spending distribution across categories |
 | Expenses Table | Detailed breakdown by category, amount, year, month, and description |
